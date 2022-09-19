@@ -32,9 +32,12 @@ Note, the Docker Compose file available in the repository contains more containe
 
 6. Write a data processor and a data sink. The data processor should regularly read and process the data from the data generators. E.g., a calculation or a machine learning application on the retrieved data; a data enrichment; or the extraction of information from the message. Then the processor sends the data to a data sink. In the data sink the data is stored, e.g. in a CSV file. Use appropriate Kafka components and meaningful names of functions, variables, etc. for the implementation. 
 
-7. Draw an overview of your application components including interfaces and data flows, for example using a component diagram. Describe your diagram in about 200 words.
-What are the tasks of the components? Which interfaces do the components have? Why did you decide to use these components? 
-Are there any other design decisions you have made? Which requirements (e.g. libraries, hardware, ...) does a component have?
+7. Draw an overview of your application components including interfaces and data flows, for example using a component diagram. Answer the following questions and interpret your experiments or results in about 300 words: 
+    
+      * What are the tasks of the components?
+      * Which interfaces do the components have?
+      * Why did you decide to use these components? 
+      * Are there any other design decisions you have made? Which requirements (e.g. libraries, hardware, ...) does a component have?
 
 
 ### Part 2: Communication Patterns
@@ -48,13 +51,12 @@ todo
 
 
 4. Answer the following questions and interpret your experiments or results in about 300 words: 
-
-  * Which communication pattern is used by Kafka?
-  * What is the difference compared to your choosen pattern?
-  * What are the advantages and disadvantages of these patterns? 
-  * How can you scale the two different approaches? What are ? Why? What are challenges to be considered?
-  * What other 2-3 topologies/patterns do you know used for data processing? Describe the differences and use cases with at least one additional topology. 
-  * Which pattern suits your chosen application best?
+      * Which communication pattern is used by Kafka?
+      * What is the difference compared to your choosen pattern?
+      * What are the advantages and disadvantages of these patterns? 
+      * How can you scale the two different approaches? What are ? Why? What are challenges to be considered?
+      * What other 2-3 topologies/patterns do you know used for data processing? Describe the differences and use cases with at least one additional topology. 
+      * Which pattern suits your chosen application best?
 
 
 
@@ -107,4 +109,4 @@ Parts of this mini-challenge are based on: https://github.com/mneedham/basic-kaf
 * Kafka crash course: https://youtu.be/R873BlNVUB4
 * Getting started with Kafka: https://towardsdatascience.com/getting-started-with-apache-kafka-in-python-604b3250aa05
 * In-depth Kafka online course: https://www.udemy.com/course/apache-kafka/
-
+* Excelent guide on low level communication patterns: https://zguide.zeromq.org/
