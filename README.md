@@ -47,10 +47,8 @@ Use other serializers/deserializers instead of JSON for the messages.
 1. Rewrite your application of part 1 using another communication pattern. You can also use another communciation framework, such as RabbitMQ and/or another underlying messaging protcol such as MQTT.
     
 2. Pack your rewritten application into containers. Describe the used containers and how they interact with each other using a diagram. 
-    
-3. 
 
-4. Answer the following questions and interpret your experiments or results in about 300 words: 
+3. Answer the following questions and interpret your experiments or results in about 300 words: 
       * Which communication pattern is used by Kafka?
       * What is the difference compared to your choosen pattern?
       * What are the advantages and disadvantages of these patterns? 
@@ -74,11 +72,6 @@ Show how your container setup could be integrated into a container orchestration
 
 3. Did you detect bottlenecks? Describe and discuss 1-3 detected bottlenecks in about 200-300 words. 
 
-4. Answer the following questions and interpret your experiments or results in about 300 words: 
-      * Is the data processor/generator IO or CPU bound? Why?
-      * 
-
-
 #### Bonus 3
 Mitigate or produce a bottleneck.
 
@@ -89,7 +82,7 @@ Write a reflection on the realization of the mini-challenge in about 300-500 wor
 What would you do differently in the future? What would you change in the assignment? Give examples in each case.
 
 
-#### Bonus  3
+#### Bonus  4
 Optionally, a learning diary (Lerntagebuch) may be included with the submission, which documents daily how the learning progress was. 
 For example, briefly answer a few questions, analogous to a daily scrum meeting. What did you do that day? What was successful? Where are there currently problems? 
 Who could help with these problems?
