@@ -39,16 +39,16 @@ Note, the Docker Compose file available in the repository contains more containe
       * Why did you decide to use these components? 
       * Are there any other design decisions you have made? Which requirements (e.g. libraries, hardware, ...) does a component have?
 
+#### Bonus 1
+Use other serializers/deserializers instead of JSON for the messages.
 
 ### Part 2: Communication Patterns
 
-1. Change the scalability of your communication framework by chaning the used resources. (E.g.: add brokers and/or zookeepers and play with parameters in the docker-compose file.) Perform 2-3 experiments with different configur
-
-todo
-
-
-
-
+1. Rewrite your application of part 1 using another communication pattern. You can also use another communciation framework, such as RabbitMQ and/or another underlying messaging protcol such as MQTT.
+    
+2. Pack your rewritten application into containers. Describe the used containers and how they interact with each other using a diagram. 
+    
+3. 
 
 4. Answer the following questions and interpret your experiments or results in about 300 words: 
       * Which communication pattern is used by Kafka?
@@ -58,11 +58,12 @@ todo
       * What other 2-3 topologies/patterns do you know used for data processing? Describe the differences and use cases with at least one additional topology. 
       * Which pattern suits your chosen application best?
 
-
+#### Bonus 2
+Show how your container setup could be integrated into a container orchestration system (such as Kubernets) and how it would profit from this. Or show how you could replace some of the components with cloud-based offers and what changes/consideradtions come with this.
 
 ### Part 3: Performance Analysis and Evaluation
 
-1. Change the scalability of your communication framework by chaning the used resources. (E.g.: add brokers and/or zookeepers and play with parameters in the docker-compose file.) Perform 2-3 experiments with different configurations. Document your experiments and their results appropriately (e.g. by video recording). Discuss the results in about 200 words.
+1. Change the scalability of your communication framework by changing the used resources. (E.g.: add brokers and/or zookeepers and play with parameters in the docker-compose file. Use orders of magnited more producers/consumers.) Perform 2-3 experiments with different configurations. Document your experiments and their results appropriately (e.g. by video recording). Discuss the results in about 200 words.
 
 2. Analyze the performance of your application:
 
@@ -74,14 +75,11 @@ todo
 3. Did you detect bottlenecks? Describe and discuss 1-3 detected bottlenecks in about 200-300 words. 
 
 4. Answer the following questions and interpret your experiments or results in about 300 words: 
+      * Is the data processor/generator IO or CPU bound? Why?
+      * 
 
-* ..
 
-
-#### Bonus 1
-Use other serializers/deserializers instead of JSON for the messages.
-
-#### Bonus 2
+#### Bonus 3
 Mitigate or produce a bottleneck.
 
 
