@@ -21,7 +21,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
 
   broker-1:
-    image: confluentinc/cp-enterprise-kafka
+    image: confluentinc/cp-enterprise-kafka:6.0.10
     hostname: broker1
     container_name: broker1
     depends_on:
@@ -43,7 +43,7 @@ services:
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       
   broker-2:
-    image: confluentinc/cp-enterprise-kafka
+    image: confluentinc/cp-enterprise-kafka:6.0.10
     hostname: broker2
     container_name: broker2
     depends_on:
@@ -65,7 +65,7 @@ services:
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       
   broker-3:
-    image: confluentinc/cp-enterprise-kafka
+    image: confluentinc/cp-enterprise-kafka:6.0.10
     hostname: broker3
     container_name: broker3
     depends_on:
