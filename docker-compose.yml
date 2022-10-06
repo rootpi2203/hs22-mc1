@@ -103,33 +103,34 @@ services:
       - ./notebooks:/home/jovyan/
     ports:
       - "8889:8889"
-  #part1_producer2:
-  #  container_name: part1_producer2
-  #  build: ./images/image_producer2
-  #  volumes:
-  #    - ./notebooks:/home/jovyan/
-  #  ports:
-  #    - "8890:8890"
-  #part1_consumer1:
-  #  container_name: part1_consumer1
-  #  build: ./images/image_consumer1
-  #  volumes:
-  #    - ./notebooks:/home/jovyan/
-  #  ports:
-  #    - "8891:8891"
+  part1_producer2:
+    container_name: part1_producer2
+    build: ./images/image_producer2
+    volumes:
+      - ./notebooks:/home/jovyan/
+    ports:
+      - "8890:8890"
 
-  #part1_consumer2a:
-  #  container_name: part1_consumer2a
-  #  build: ./images/image_consumer2a
-  #  volumes:
-  #    - ./notebooks:/home/jovyan/
-  #  ports:
-  #    - "8892:8892"
+  part1_consumer1:
+    container_name: part1_consumer1
+    build: ./images/image_consumer1
+    volumes:
+      - ./notebooks:/home/jovyan/
+    ports:
+      - "8891:8891"
 
-  #part1_consumer2b:
-  #  container_name: part1_consumer2b
-  #  build: ./images/image_consumer2b
-  #  volumes:
-  #    - ./notebooks:/home/jovyan/
-  #  ports:
-  #    - "8893:8893"
+  part1_consumer2a:
+    container_name: part1_consumer2a
+    build: ./images/image_consumer2a
+    volumes:
+      - ./notebooks:/home/jovyan/
+    ports:
+      - "8892:8892"
+
+  part1_consumer2b:
+    container_name: part1_consumer2b
+    build: ./images/image_consumer2b
+    volumes:
+      - ./notebooks:/home/jovyan/
+    ports:
+      - "8893:8893"

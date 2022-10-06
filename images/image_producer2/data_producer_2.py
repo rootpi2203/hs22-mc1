@@ -27,7 +27,7 @@ def publish_message(producer_instance, topic_name, key, value):
         print(str(ex))
 
 def produce_xy(producer, topic_name, sleep_hz):
-    with open('data/gen2_Heizungsdaten.csv') as f:
+    with open('gen2_Heizungsdaten.csv') as f:
         next(f)
         for i, line in enumerate(f):
             print(f'index {i}')

@@ -31,7 +31,7 @@ def consume_2(consumer, topic_name):
     if len(messages) != 0:
         # append to file
         df_consumer1 = pd.DataFrame(messages)
-        df_consumer1.to_csv('data/consum_Heizungsdaten.csv', mode='a', header=False, index=False)
+        df_consumer1.to_csv('consum_Heizungsdaten.csv', mode='a', header=False, index=False)
         print('messages saved to file')
         return True
     else:
