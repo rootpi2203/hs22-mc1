@@ -12,12 +12,14 @@ server3 = 'broker3:9097'
 topic1 = "data_gen1"
 topic2 = "data_gen2"
 
+print('config..')
+
 consumer2a = KafkaConsumer(topic2,
                          auto_offset_reset='earliest',
                          bootstrap_servers=[server2],
                          api_version=(0, 10),
                          value_deserializer = json.loads,
-                         consumer_timeout_ms=1000)
+                         consumer_timeout_ms=4000)
 
 def consume_2(consumer, topic_name):
     # get data from Kafka
@@ -29,17 +31,25 @@ def consume_2(consumer, topic_name):
 
     # save received data to csv
     if len(messages) != 0:
-        # append to file
+        # append to file&
         df_consumer1 = pd.DataFrame(messages)
         df_consumer1.to_csv('consum_Heizungsdaten.csv', mode='a', header=False, index=False)
         print('messages saved to file')
         return True
     else:
-        print('no new messages - producer has stopped')
+        print('no new messages - waiting for producer')
         return False
 
 
+wait_start_up_producer = True
+wait_time = 30
 while True:
+    if wait_start_up_producer:
+        print(f"Waiting for producer .. {wait_time}sec")
+        time.sleep(wait_time)
+        print("start up..")
+        wait_start_up_producer = False
+
     new_data = consume_2(consumer2a, topic2)
     #if not new_data:
         #break

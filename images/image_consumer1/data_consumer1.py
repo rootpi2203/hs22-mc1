@@ -12,12 +12,14 @@ server3 = 'broker3:9097'
 topic1 = "data_gen1"
 topic2 = "data_gen2"
 
+print('config..')
+
 consumer1 = KafkaConsumer(topic1,
                          auto_offset_reset='earliest',
                          bootstrap_servers=[server1],
                          api_version=(0, 10),
                          value_deserializer = json.loads,
-                         consumer_timeout_ms=400,
+                         consumer_timeout_ms=1000,
                          client_id='joe')
 
 
@@ -43,11 +45,25 @@ def consume_1(consumer, topic_name):
             print('messages saved to file')
         return True
     else:
-        print('no new messages - producer has stopped')
+        print('no new messages - waiting for producer')
         return False
 
+#wait_time = 60
+#print(f"Waiting for producer .. {wait_time}sec")
+#time.sleep(wait_time)
 
+#consume_1(consumer1, topic1)
+
+
+wait_start_up_producer = True
+wait_time = 30
 while True:
+    if wait_start_up_producer:
+        print(f"Waiting for producer .. {wait_time}sec")
+        time.sleep(wait_time)
+        print("start up..")
+        wait_start_up_producer = False
+
     new_data = consume_1(consumer1, topic1)
     #if not new_data:
         #break

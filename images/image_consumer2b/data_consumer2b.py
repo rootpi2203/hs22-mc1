@@ -12,6 +12,8 @@ server3 = 'broker3:9097'
 topic1 = "data_gen1"
 topic2 = "data_gen2"
 
+print('config..')
+
 consumer2b = KafkaConsumer(topic2,
                          auto_offset_reset='earliest',
                          bootstrap_servers=[server2],
@@ -33,11 +35,19 @@ def consume_2(consumer, topic_name):
         print(f'latest data: {messages[-1]["data"]}')
         return True
     else:
-        print('no new messages - producer has stopped')
+        print('no new messages - waiting for producer')
         return False
 
 
+wait_start_up_producer = True
+wait_time = 30
 while True:
+    if wait_start_up_producer:
+        print(f"Waiting for producer .. {wait_time}sec")
+        time.sleep(wait_time)
+        print("start up..")
+        wait_start_up_producer = False
+
     new_data = consume_2(consumer2b, topic2)
     #if not new_data:
         #break

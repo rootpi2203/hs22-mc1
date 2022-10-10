@@ -96,47 +96,54 @@ services:
     depends_on: 
       - broker-1
       
-  part1_producer1a:
-    container_name: part1_producer1a
+  part2_producer1a:
+    container_name: part2_producer1a
     build: ./images/image_producer1a
-    volumes:
-      - ./notebooks:/home/jovyan/
+    depends_on:
+      - "broker-1"
+    #volumes:
+      #- ./notebooks:/home/jovyan/
     ports:
       - "8889:8889"
-  part1_producer2:
-    container_name: part1_producer2
+  part2_producer2:
+    container_name: part2_producer2
     build: ./images/image_producer2
-    volumes:
-      - ./notebooks:/home/jovyan/
+    depends_on:
+      - "broker-2"
+    #volumes:
+      #- ./notebooks:/home/jovyan/
     ports:
       - "8890:8890"
 
-  part1_consumer1:
-    container_name: part1_consumer1
+  part2_consumer1:
+    container_name: part2_consumer1
     build: ./images/image_consumer1
-    #depends_on:
-      #- "part_producer1a"
-    volumes:
-      - ./notebooks:/home/jovyan/
+    depends_on:
+      - "part2_producer1a"
+      - "broker-1"
+    #volumes:
+      #- ./notebooks:/home/jovyan/
     ports:
       - "8891:8891"
 
-  part1_consumer2a:
-    container_name: part1_consumer2a
+  part2_consumer2a:
+    container_name: part2_consumer2a
     build: ./images/image_consumer2a
-    #depends_on:
-      #- "part_producer2"
-    volumes:
-      - ./notebooks:/home/jovyan/
+    depends_on:
+      - "part2_producer2"
+      - "broker-2"
+    #volumes:
+      # ./notebooks:/home/jovyan/
     ports:
       - "8892:8892"
 
-  part1_consumer2b:
-    container_name: part1_consumer2b
+  part2_consumer2b:
+    container_name: part2_consumer2b
     build: ./images/image_consumer2b
-    #depends_on:
-      #- "part_producer2"
-    volumes:
-      - ./notebooks:/home/jovyan/
+    depends_on:
+      - "part2_producer2"
+      - "broker-2"
+    #volumes:
+      #- ./notebooks:/home/jovyan/
     ports:
       - "8893:8893"
