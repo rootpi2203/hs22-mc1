@@ -114,6 +114,8 @@ services:
   part1_consumer1:
     container_name: part1_consumer1
     build: ./images/image_consumer1
+    #depends_on:
+      #- "part_producer1a"
     volumes:
       - ./notebooks:/home/jovyan/
     ports:
@@ -122,6 +124,8 @@ services:
   part1_consumer2a:
     container_name: part1_consumer2a
     build: ./images/image_consumer2a
+    #depends_on:
+      #- "part_producer2"
     volumes:
       - ./notebooks:/home/jovyan/
     ports:
@@ -130,6 +134,8 @@ services:
   part1_consumer2b:
     container_name: part1_consumer2b
     build: ./images/image_consumer2b
+    #depends_on:
+      #- "part_producer2"
     volumes:
       - ./notebooks:/home/jovyan/
     ports:

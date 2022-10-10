@@ -6,8 +6,8 @@ import csv
 import time
 
 server1 = 'broker1:9093'
-server2 = 'broker1:9095'
-server3 = 'broker1:9097'
+server2 = 'broker2:9095'
+server3 = 'broker3:9097'
 
 topic1 = "data_gen1"
 topic2 = "data_gen2"
@@ -49,6 +49,6 @@ def consume_1(consumer, topic_name):
 
 while True:
     new_data = consume_1(consumer1, topic1)
-    if not new_data:
-        break
+    #if not new_data:
+        #break
     time.sleep(5)

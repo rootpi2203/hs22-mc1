@@ -41,8 +41,8 @@ def consume_2(consumer, topic_name):
 
 while True:
     new_data = consume_2(consumer2a, topic2)
-    if not new_data:
-        break
+    #if not new_data:
+        #break
     time.sleep(4)
 
 

@@ -36,9 +36,10 @@ def consume_2(consumer, topic_name):
         print('no new messages - producer has stopped')
         return False
 
+
 while True:
     new_data = consume_2(consumer2b, topic2)
-    if not new_data:
-        break
+    #if not new_data:
+        #break
     time.sleep(10)
 

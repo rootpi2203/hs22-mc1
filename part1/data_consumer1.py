@@ -34,7 +34,7 @@ def consume_1(consumer, topic_name):
         # write new file
         if messages[0]['index'] == 0:
             df_consumer1 = pd.DataFrame(messages)
-            df_consumer1.to_csv('consum_sinus_data.csv', mode='w', index=False)
+            df_consumer1.to_csv('../data/consum_sinus_data.csv', mode='w', index=False)
             print('messages saved in new file')
         # append to file
         else:
