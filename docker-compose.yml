@@ -98,6 +98,7 @@ services:
       
   part2_producer1a:
     container_name: part2_producer1a
+    hostname: part2_producer1a
     build: ./images/image_producer1a
     depends_on:
       - "broker-1"
@@ -107,6 +108,7 @@ services:
       - "8889:8889"
   part2_producer2:
     container_name: part2_producer2
+    hostname: part2_producer2
     build: ./images/image_producer2
     depends_on:
       - "broker-2"
@@ -117,6 +119,7 @@ services:
 
   part2_consumer1:
     container_name: part2_consumer1
+    hostname: part2_consumer1
     build: ./images/image_consumer1
     depends_on:
       - "part2_producer1a"
@@ -128,6 +131,7 @@ services:
 
   part2_consumer2a:
     container_name: part2_consumer2a
+    hostname: part2_consumer2a
     build: ./images/image_consumer2a
     depends_on:
       - "part2_producer2"
@@ -139,6 +143,7 @@ services:
 
   part2_consumer2b:
     container_name: part2_consumer2b
+    hostname: part2_consumer2b
     build: ./images/image_consumer2b
     depends_on:
       - "part2_producer2"

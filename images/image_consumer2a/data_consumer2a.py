@@ -4,6 +4,7 @@ import uuid
 import pandas as pd
 import csv
 import time
+from datetime import datetime
 
 server1 = 'broker1:9093'
 server2 = 'broker2:9095'
@@ -12,14 +13,15 @@ server3 = 'broker3:9097'
 topic1 = "data_gen1"
 topic2 = "data_gen2"
 
-print('config..')
+print(f'{datetime.now()}: config..')
 
 consumer2a = KafkaConsumer(topic2,
                          auto_offset_reset='earliest',
                          bootstrap_servers=[server2],
                          api_version=(0, 10),
                          value_deserializer = json.loads,
-                         consumer_timeout_ms=4000)
+                         consumer_timeout_ms=4000,
+                         client_id="cunsum2a")
 
 def consume_2(consumer, topic_name):
     # get data from Kafka
@@ -27,13 +29,13 @@ def consume_2(consumer, topic_name):
     for msg in consumer:
         #print(msg.key.decode("utf-8"), msg.value)
         messages.append(msg.value)
-    print(f'{len(messages)} messages received on topic: {topic_name}')
+    print(f'{datetime.now()}{len(messages)} messages received on topic: {topic_name}')
 
     # save received data to csv
     if len(messages) != 0:
         # append to file
-        df_consumer1 = pd.DataFrame(messages)
-        df_consumer1.to_csv('consum_Heizungsdaten.csv', mode='a', header=False, index=False)
+        #df_consumer1 = pd.DataFrame(messages)
+        #df_consumer1.to_csv('consum_Heizungsdaten.csv', mode='a', header=False, index=False)
         print('messages saved to file')
         return True
     else:
@@ -50,7 +52,7 @@ while True:
         print("start up..")
         wait_start_up_producer = False
 
-    new_data = consume_2(consumer2a, topic2)
+    consume_2(consumer2a, topic2)
     #if not new_data:
         #break
     time.sleep(4)
