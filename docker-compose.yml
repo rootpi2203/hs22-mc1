@@ -122,7 +122,6 @@ services:
     hostname: part2_consumer1
     build: ./images/image_consumer1
     depends_on:
-      - "part2_producer1a"
       - "broker-1"
     #volumes:
       #- ./notebooks:/home/jovyan/
@@ -134,7 +133,6 @@ services:
     hostname: part2_consumer2a
     build: ./images/image_consumer2a
     depends_on:
-      - "part2_producer2"
       - "broker-2"
     #volumes:
       # ./notebooks:/home/jovyan/
@@ -146,7 +144,6 @@ services:
     hostname: part2_consumer2b
     build: ./images/image_consumer2b
     depends_on:
-      - "part2_producer2"
       - "broker-2"
     #volumes:
       #- ./notebooks:/home/jovyan/
