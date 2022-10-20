@@ -102,20 +102,13 @@ services:
     build: ./images/image_producer1a
     depends_on:
       - "broker-1"
-    #volumes:
-      #- ./notebooks:/home/jovyan/
-    ports:
-      - "8889:8889"
+
   part2_producer2:
     container_name: part2_producer2
     hostname: part2_producer2
     build: ./images/image_producer2
     depends_on:
       - "broker-2"
-    #volumes:
-      #- ./notebooks:/home/jovyan/
-    ports:
-      - "8890:8890"
 
   part2_consumer1:
     container_name: part2_consumer1
@@ -123,8 +116,6 @@ services:
     build: ./images/image_consumer1
     depends_on:
       - "broker-1"
-    #volumes:
-      #- ./notebooks:/home/jovyan/
     ports:
       - "8891:8891"
 
@@ -134,8 +125,6 @@ services:
     build: ./images/image_consumer2a
     depends_on:
       - "broker-2"
-    #volumes:
-      # ./notebooks:/home/jovyan/
     ports:
       - "8892:8892"
 
@@ -145,7 +134,5 @@ services:
     build: ./images/image_consumer2b
     depends_on:
       - "broker-2"
-    #volumes:
-      #- ./notebooks:/home/jovyan/
     ports:
       - "8893:8893"
