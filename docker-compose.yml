@@ -194,47 +194,47 @@ services:
     depends_on:
       - "broker-2"
 
-#  part3_producer8:
-#    container_name: part3_producer8
-#    hostname: part3_producer8
-#    build: ./images/image_producer2
-#    depends_on:
-#      - "broker-2"
-#
-#  part3_producer9:
-#    container_name: part3_producer9
-#    hostname: part3_producer9
-#    build: ./images/image_producer2
-#    depends_on:
-#      - "broker-2"
-#
-#  part3_producer10:
-#    container_name: part3_producer10
-#    hostname: part3_producer10
-#    build: ./images/image_producer2
-#    depends_on:
-#      - "broker-2"
-#
-#  part3_producer11:
-#    container_name: part3_producer11
-#    hostname: part3_producer11
-#    build: ./images/image_producer2
-#    depends_on:
-#      - "broker-2"
-#
-#  part3_producer12:
-#    container_name: part3_producer12
-#    hostname: part3_producer12
-#    build: ./images/image_producer2
-#    depends_on:
-#      - "broker-2"
-#
-#  part3_producer13:
-#    container_name: part3_producer13
-#    hostname: part3_producer13
-#    build: ./images/image_producer2
-#    depends_on:
-#      - "broker-2"
+  part3_producer8:
+    container_name: part3_producer8
+    hostname: part3_producer8
+    build: ./images/image_producer2
+    depends_on:
+      - "broker-2"
+
+  part3_producer9:
+    container_name: part3_producer9
+    hostname: part3_producer9
+    build: ./images/image_producer2
+    depends_on:
+      - "broker-2"
+
+  part3_producer10:
+    container_name: part3_producer10
+    hostname: part3_producer10
+    build: ./images/image_producer2
+    depends_on:
+      - "broker-2"
+
+  part3_producer11:
+    container_name: part3_producer11
+    hostname: part3_producer11
+    build: ./images/image_producer2
+    depends_on:
+      - "broker-2"
+
+  part3_producer12:
+    container_name: part3_producer12
+    hostname: part3_producer12
+    build: ./images/image_producer2
+    depends_on:
+      - "broker-2"
+
+  part3_producer13:
+    container_name: part3_producer13
+    hostname: part3_producer13
+    build: ./images/image_producer2
+    depends_on:
+      - "broker-2"
 
 
   part2_consumer1:
