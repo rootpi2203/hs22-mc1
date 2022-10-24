@@ -40,7 +40,7 @@ services:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
       KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
 
 
@@ -63,7 +63,7 @@ services:
       KAFKA_BROKER_ID: 2
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
       KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       
   broker-3:
@@ -85,31 +85,53 @@ services:
       KAFKA_BROKER_ID: 3
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
       KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
 
 
-  broker-4:
-    image: confluentinc/cp-enterprise-kafka:6.0.10
-    hostname: broker4
-    container_name: broker4
-    depends_on:
-      - zookeeper
-    ports:
-      - "9098:9098"
-    expose:
-      - "9099"
-    environment:
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker4:9099,OUTSIDE://localhost:9098
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,OUTSIDE:PLAINTEXT
-      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9099,OUTSIDE://0.0.0.0:9098
-      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker4:9099
-      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-      KAFKA_BROKER_ID: 4
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
-      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+#  broker-4:
+#    image: confluentinc/cp-enterprise-kafka:6.0.10
+#    hostname: broker4
+#    container_name: broker4
+#    depends_on:
+#      - zookeeper
+#    ports:
+#      - "9098:9098"
+#    expose:
+#      - "9099"
+#    environment:
+#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker4:9099,OUTSIDE://localhost:9098
+#      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,OUTSIDE:PLAINTEXT
+#      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9099,OUTSIDE://0.0.0.0:9098
+#      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker4:9099
+#      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+#      KAFKA_BROKER_ID: 4
+#      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+#      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
+#      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
+#      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+#
+#  broker-5:
+#    image: confluentinc/cp-enterprise-kafka:6.0.10
+#    hostname: broker5
+#    container_name: broker5
+#    depends_on:
+#      - zookeeper
+#    ports:
+#      - "9090:9090"
+#    expose:
+#      - "9091"
+#    environment:
+#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker5:9091,OUTSIDE://localhost:9090
+#      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,OUTSIDE:PLAINTEXT
+#      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9091,OUTSIDE://0.0.0.0:9090
+#      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker5:9091
+#      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+#      KAFKA_BROKER_ID: 5
+#      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+#      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
+#      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
+#      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
 
 
   kafdrop:
@@ -121,8 +143,6 @@ services:
       - KAFKA_BROKERCONNECT=broker1:9093,broker2:9095,broker3:9097
     depends_on: 
       - broker-1
-
-
       
   part2_producer1a:
     container_name: part2_producer1a
@@ -174,48 +194,47 @@ services:
     depends_on:
       - "broker-2"
 
-  part3_producer8:
-    container_name: part3_producer8
-    hostname: part3_producer8
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
-  part3_producer9:
-    container_name: part3_producer9
-    hostname: part3_producer9
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
-  part3_producer10:
-    container_name: part3_producer10
-    hostname: part3_producer10
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
-  part3_producer11:
-    container_name: part3_producer11
-    hostname: part3_producer11
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
-  part3_producer12:
-    container_name: part3_producer12
-    hostname: part3_producer12
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
-  part3_producer13:
-    container_name: part3_producer13
-    hostname: part3_producer13
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
+#  part3_producer8:
+#    container_name: part3_producer8
+#    hostname: part3_producer8
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
+#
+#  part3_producer9:
+#    container_name: part3_producer9
+#    hostname: part3_producer9
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
+#
+#  part3_producer10:
+#    container_name: part3_producer10
+#    hostname: part3_producer10
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
+#
+#  part3_producer11:
+#    container_name: part3_producer11
+#    hostname: part3_producer11
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
+#
+#  part3_producer12:
+#    container_name: part3_producer12
+#    hostname: part3_producer12
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
+#
+#  part3_producer13:
+#    container_name: part3_producer13
+#    hostname: part3_producer13
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
 
 
   part2_consumer1:

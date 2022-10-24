@@ -34,7 +34,7 @@ def produce_xy(producer, topic_data, topic_perf, sleep_hz, hostname):
         for i, line in enumerate(f):
             print(f'index {i}')
             message = json.dumps({'data': str(line)})
-            perf_message = json.dumps(f"{datetime.now(), hostname}")
+            perf_message = json.dumps({'time': str(datetime.now()), 'host': str(hostname), 'mess_num': str(1)})
             print(message)
 
             # publish data
@@ -48,6 +48,7 @@ def produce_xy(producer, topic_data, topic_perf, sleep_hz, hostname):
 server1 = 'broker1:9093'
 server2 = 'broker2:9095'
 server3 = 'broker3:9097'
+
 topic = "data_gen2"
 topic_perf = "performance"
 hostname = socket.gethostname()
