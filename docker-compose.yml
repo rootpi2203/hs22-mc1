@@ -3,13 +3,14 @@ version: '3'
       
 services:
 
-  #jupyter:
-    #container_name: jupyter1
-    #image: jupyter/scipy-notebook:${JUPYTER_VERSION:-latest}
-    #volumes:
-    #  - ./notebooks:/home/jovyan/
-    #ports:
-    #  - "8888:8888"
+  jupyter1:
+    container_name: jupyter1
+    image: jupyter/scipy-notebook:${JUPYTER_VERSION:-latest}
+    volumes:
+      - ./notebooks:/home/jovyan/
+    ports:
+      - "8886:8888"
+      - "8080:8080"
 
   zookeeper:
     image: confluentinc/cp-zookeeper
@@ -89,51 +90,51 @@ services:
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
 
 
-  broker-4:
-    image: confluentinc/cp-enterprise-kafka:6.0.10
-    hostname: broker4
-    container_name: broker4
-    depends_on:
-      - zookeeper
-    ports:
-      - "9098:9098"
-    expose:
-      - "9099"
-    environment:
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker4:9099,OUTSIDE://localhost:9098
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,OUTSIDE:PLAINTEXT
-      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9099,OUTSIDE://0.0.0.0:9098
-      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker4:9099
-      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-      KAFKA_BROKER_ID: 4
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
-      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
-      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
-
-  broker-5:
-    image: confluentinc/cp-enterprise-kafka:6.0.10
-    hostname: broker5
-    container_name: broker5
-    depends_on:
-      - zookeeper
-    ports:
-      - "9090:9090"
-    expose:
-      - "9091"
-    environment:
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker5:9091,OUTSIDE://localhost:9090
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,OUTSIDE:PLAINTEXT
-      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9091,OUTSIDE://0.0.0.0:9090
-      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker5:9091
-      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-      KAFKA_BROKER_ID: 5
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
-      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
-      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
-
-
+#  broker-4:
+#    image: confluentinc/cp-enterprise-kafka:6.0.10
+#    hostname: broker4
+#    container_name: broker4
+#    depends_on:
+#      - zookeeper
+#    ports:
+#      - "9098:9098"
+#    expose:
+#      - "9099"
+#    environment:
+#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker4:9099,OUTSIDE://localhost:9098
+#      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,OUTSIDE:PLAINTEXT
+#      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9099,OUTSIDE://0.0.0.0:9098
+#      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker4:9099
+#      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+#      KAFKA_BROKER_ID: 4
+#      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+#      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
+#      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
+#      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+#
+#  broker-5:
+#    image: confluentinc/cp-enterprise-kafka:6.0.10
+#    hostname: broker5
+#    container_name: broker5
+#    depends_on:
+#      - zookeeper
+#    ports:
+#      - "9090:9090"
+#    expose:
+#      - "9091"
+#    environment:
+#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker5:9091,OUTSIDE://localhost:9090
+#      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,OUTSIDE:PLAINTEXT
+#      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9091,OUTSIDE://0.0.0.0:9090
+#      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker5:9091
+#      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+#      KAFKA_BROKER_ID: 5
+#      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+#      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
+#      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
+#      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+#
+#
   kafdrop:
     image: obsidiandynamics/kafdrop:latest
     container_name: kafdrop1
@@ -141,132 +142,132 @@ services:
       - 9000:9000
     environment:
       - KAFKA_BROKERCONNECT=broker1:9093,broker2:9095,broker3:9097
-    depends_on: 
+    depends_on:
       - broker-1
-      
-  part2_producer1a:
-    container_name: part2_producer1a
-    hostname: part2_producer1a
-    build: ./images/image_producer1a
-    depends_on:
-      - "broker-1"
+#
+#  part2_producer1a:
+#    container_name: part2_producer1a
+#    hostname: part2_producer1a
+#    build: ./images/image_producer1a
+#    depends_on:
+#      - "broker-1"
+#
+#  part2_producer2:
+#    container_name: part2_producer2
+#    hostname: part2_producer2
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
+#
+#  part3_producer3:
+#    container_name: part3_producer3
+#    hostname: part3_producer3
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
+#
+#  part3_producer4:
+#    container_name: part3_producer4
+#    hostname: part3_producer4
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
+#
+#
+#  part3_producer5:
+#    container_name: part3_producer5
+#    hostname: part3_producer5
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
+#
+#  part3_producer6:
+#    container_name: part3_producer6
+#    hostname: part3_producer6
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
+#
+#  part3_producer7:
+#    container_name: part3_producer7
+#    hostname: part3_producer7
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
+#
+#  part3_producer8:
+#    container_name: part3_producer8
+#    hostname: part3_producer8
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
+#
+#  part3_producer9:
+#    container_name: part3_producer9
+#    hostname: part3_producer9
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
+#
+#  part3_producer10:
+#    container_name: part3_producer10
+#    hostname: part3_producer10
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
+#
+#  part3_producer11:
+#    container_name: part3_producer11
+#    hostname: part3_producer11
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
+#
+#  part3_producer12:
+#    container_name: part3_producer12
+#    hostname: part3_producer12
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
+#
+#  part3_producer13:
+#    container_name: part3_producer13
+#    hostname: part3_producer13
+#    build: ./images/image_producer2
+#    depends_on:
+#      - "broker-2"
+#
+#
+#  part2_consumer1:
+#    container_name: part2_consumer1
+#    hostname: part2_consumer1
+#    build: ./images/image_consumer1
+#    depends_on:
+#      - "broker-1"
+#    ports:
+#      - "8891:8891"
+#
+#  part2_consumer2a:
+#    container_name: part2_consumer2a
+#    hostname: part2_consumer2a
+#    build: ./images/image_consumer2a
+#    depends_on:
+#      - "broker-2"
+#    ports:
+#      - "8892:8892"
+#
+#  part2_consumer2b:
+#    container_name: part2_consumer2b
+#    hostname: part2_consumer2b
+#    build: ./images/image_consumer2b
+#    depends_on:
+#      - "broker-2"
+#    ports:
+#      - "8893:8893"
 
-  part2_producer2:
-    container_name: part2_producer2
-    hostname: part2_producer2
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
-  part3_producer3:
-    container_name: part3_producer3
-    hostname: part3_producer3
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
-  part3_producer4:
-    container_name: part3_producer4
-    hostname: part3_producer4
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
-
-  part3_producer5:
-    container_name: part3_producer5
-    hostname: part3_producer5
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
-  part3_producer6:
-    container_name: part3_producer6
-    hostname: part3_producer6
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
-  part3_producer7:
-    container_name: part3_producer7
-    hostname: part3_producer7
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
-  part3_producer8:
-    container_name: part3_producer8
-    hostname: part3_producer8
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
-  part3_producer9:
-    container_name: part3_producer9
-    hostname: part3_producer9
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
-  part3_producer10:
-    container_name: part3_producer10
-    hostname: part3_producer10
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
-  part3_producer11:
-    container_name: part3_producer11
-    hostname: part3_producer11
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
-  part3_producer12:
-    container_name: part3_producer12
-    hostname: part3_producer12
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
-  part3_producer13:
-    container_name: part3_producer13
-    hostname: part3_producer13
-    build: ./images/image_producer2
-    depends_on:
-      - "broker-2"
-
-
-  part2_consumer1:
-    container_name: part2_consumer1
-    hostname: part2_consumer1
-    build: ./images/image_consumer1
-    depends_on:
-      - "broker-1"
-    ports:
-      - "8891:8891"
-
-  part2_consumer2a:
-    container_name: part2_consumer2a
-    hostname: part2_consumer2a
-    build: ./images/image_consumer2a
-    depends_on:
-      - "broker-2"
-    ports:
-      - "8892:8892"
-
-  part2_consumer2b:
-    container_name: part2_consumer2b
-    hostname: part2_consumer2b
-    build: ./images/image_consumer2b
-    depends_on:
-      - "broker-2"
-    ports:
-      - "8893:8893"
-
-  jupyter_perf:
-    container_name: jupyter_perf
-    hostname: jupyter_perf
-    build: ./images/image_consumer_performance
-    ports:
-      - "8888:8888"
+#  jupyter_perf:
+#    container_name: jupyter_perf
+#    hostname: jupyter_perf
+#    build: ./images/image_consumer_performance
+#    ports:
+#      - "8880:8888"
