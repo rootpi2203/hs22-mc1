@@ -1,10 +1,10 @@
+from memory_profiler import profile
 from kafka import KafkaConsumer, KafkaProducer
 import json
 import uuid
-import pandas as pd
-import csv
 import time
 
+@profile
 def connect_kafka_producer(servers):
     _producer = None
     try:
@@ -14,34 +14,31 @@ def connect_kafka_producer(servers):
         print(str(ex))
     finally:
         return _producer
-
+    
+@profile
 def publish_message(producer_instance, topic_name, key, value):
     try:
         key_bytes = bytes(key, encoding='utf-8')
         value_bytes = bytes(value, encoding='utf-8')
         producer_instance.send(topic_name, key=key_bytes, value=value_bytes)
         producer_instance.flush()
-        print(f'Message published successfully to topic:  {topic_name}.')
+        #print(f'Message published successfully to topic: {topic_name}.')
     except Exception as ex:
         print('Exception in publishing message')
         print(str(ex))
 
-def produce_xy(producer, topic_name, sleep_hz):
-    with open('gen1_sinus_data.csv') as f:
-        reader = [line.split() for line in f]
-        for i, line in enumerate(reader):
-            print(f'index {i}, data: {line}')
-            message = json.dumps({'index':i, 'data': line})
+@profile
+def produce_xy(producer, topic_name, sleep_hz, stop_by=5):
+    with open('gen2_Heizungsdaten.csv') as f:
+        next(f)
+        for i, line in enumerate(f):
+            # stop while loop for time measurement
+            if i > stop_by:
+                break
+            
+            #print(f'index {i}')
+            message = json.dumps({'data': str(line)})
+            #print(message)
             publish_message(producer, topic_name, str(uuid.uuid4()), message)
-            time.sleep(sleep_hz)
-
-
-server1 = 'broker1:9093'
-server2 = 'broker2:9095'
-server3 = 'broker3:9097'
-topic = "data_gen1"
-
-producer1 = connect_kafka_producer(server1)
-
-hz = 0.1
-produce_xy(producer1, topic, hz)
+            time.sleep(sleep_hz)            
+            
