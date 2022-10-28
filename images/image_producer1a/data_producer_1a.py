@@ -43,5 +43,5 @@ topic = "data_gen1"
 
 producer1 = connect_kafka_producer(server1)
 
-hz = 0.5
+hz = 0.1
 produce_xy(producer1, topic, hz)

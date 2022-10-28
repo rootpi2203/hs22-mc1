@@ -4,7 +4,7 @@
 **Dokumentation und Struktur**  
 1. Die Aufgabenstellung der hpc Mini Challenge kann aus dem `Task_description` File entnommen werden
 2. Eine detaillierte Bearbeitung der Aufgaben sowie Anleitungen zur Anwendung können im File `report/hpc_ch1_manuel` nachgeschlagen werden.
-3. Die Python file der einzelnen Container, sind direkt im `image` Ordner hinterlegt.
+3. Die Python files für die Images, sind direkt im `image` Ordner hinterlegt.
 4. Der Ordner `notebooks` umfasst das Volume des default Jupyter Container
 
 
