@@ -55,5 +55,5 @@ hostname = socket.gethostname()
 
 producer2 = connect_kafka_producer(server2)
 
-hz = 0.01
+hz = 1
 produce_xy(producer2, topic, topic_perf, hz, hostname)
